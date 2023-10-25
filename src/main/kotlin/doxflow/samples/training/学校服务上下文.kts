@@ -55,11 +55,11 @@ diagram_8x_flow {
                     key_data("合同开始时间", "合同结束时间")
 
                     payFixFee = fulfillment("支付固定费用", ONE_TO_N) {
-                        request(courseBuyer) {
+                        request(platform) {
                             key_timestamps("创建时间", "过期时间")
                         }
 
-                        confirmation(platform) {
+                        confirmation(courseBuyer) {
                             key_timestamps("创建时间")
 
                         }
@@ -86,11 +86,11 @@ diagram_8x_flow {
                     }
 
                     fulfillment("提供技术支持", ONE_TO_N) {
-                        request(platform) {
+                        request(courseBuyer) {
                             key_timestamps("创建时间", "过期时间")
                         }
 
-                        confirmation(courseBuyer) {
+                        confirmation(platform) {
                             key_timestamps("创建时间")
 
                             evidence("提供培训或升级系统等记录") {
@@ -117,20 +117,10 @@ diagram_8x_flow {
                     }
 
                     provideServiceData = fulfillment("提供服务使用相关数据", ONE_TO_N) {
-                        request(platform) {
+                        request(courseBuyer) {
                             key_timestamps("创建时间", "过期时间")
 
                             key_data("视频播放量", "完播率")
-                        }
-
-                        confirmation(courseBuyer) {
-                            key_timestamps("创建时间")
-                        }
-                    }
-
-                    overduePaymentFulfillment = fulfillment("滞纳金支付", ONE_TO_N) {
-                        request(courseBuyer) {
-                            key_timestamps("创建时间", "过期时间")
                         }
 
                         confirmation(platform) {
@@ -138,12 +128,22 @@ diagram_8x_flow {
                         }
                     }
 
-                    outdatedPaymentFulfillment = fulfillment("违约金支付", ONE_TO_N) {
+                    overduePaymentFulfillment = fulfillment("滞纳金支付", ONE_TO_N) {
                         request(platform) {
                             key_timestamps("创建时间", "过期时间")
                         }
 
                         confirmation(courseBuyer) {
+                            key_timestamps("创建时间")
+                        }
+                    }
+
+                    outdatedPaymentFulfillment = fulfillment("违约金支付", ONE_TO_N) {
+                        request(courseBuyer) {
+                            key_timestamps("创建时间", "过期时间")
+                        }
+
+                        confirmation(platform) {
                             key_timestamps("创建时间")
                         }
                     }

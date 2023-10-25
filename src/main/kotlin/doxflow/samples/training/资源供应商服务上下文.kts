@@ -62,11 +62,11 @@ diagram_8x_flow {
                     }
 
                     updateResource = fulfillment("更新资源", ONE_TO_N) {
-                        request(resourceProvider) {
+                        request(platform) {
                             key_timestamps("创建时间")
                         }
 
-                        confirmation(platform) {
+                        confirmation(resourceProvider) {
                             key_timestamps("创建时间")
 
                             evidence("资源更新记录") {
@@ -76,12 +76,12 @@ diagram_8x_flow {
                     }
 
                     fulfillment("授予对资源的使用 传播 售卖等权利", ONE_TO_N) {
-                        request(resourceProvider) {
+                        request(platform) {
                             key_timestamps("创建时间", "过期时间")
                             key_data("有效的资源版权凭证")
                         }
 
-                        confirmation(platform) {
+                        confirmation(resourceProvider) {
                             key_timestamps("创建时间")
 
                             evidence("有效的资源版权凭证") {
@@ -92,12 +92,12 @@ diagram_8x_flow {
                     }
 
                     fulfillment("提供符合税务规定的有效发票", ONE_TO_N) {
-                        request(resourceProvider) {
+                        request(platform) {
                             key_timestamps("创建时间", "过期时间")
                             key_data("有效发票")
                         }
 
-                        confirmation(platform) {
+                        confirmation(resourceProvider) {
                             key_timestamps("创建时间")
 
                             evidence("有效发票") {

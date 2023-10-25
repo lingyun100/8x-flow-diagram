@@ -37,12 +37,12 @@ diagram_8x_flow {
                     key_data("合同开始时间", "合同结束时间")
 
                     saveCourse = fulfillment("直播或录播课程", ONE_TO_N) {
-                        request(teacher) {
-                            key_timestamps("创建时间")
+                        request(platform) {
+                            key_timestamps("创建时间", "结束时间")
                         }
 
-                        confirmation(platform) {
-                            key_timestamps("创建时间")
+                        confirmation(teacher) {
+                            key_timestamps("创建时间", "结束时间")
 
                             evidence("直播或录播课程记录") {
                                 key_timestamps("开始时间", "结束时间")
@@ -51,11 +51,11 @@ diagram_8x_flow {
                     }
 
                     fulfillment("个性化辅导服务", ONE_TO_N) {
-                        request(teacher) {
-                            key_timestamps("创建时间")
+                        request(platform) {
+                            key_timestamps("创建时间", "结束时间")
                         }
 
-                        confirmation(platform) {
+                        confirmation(teacher) {
                             key_timestamps("创建时间")
 
                             evidence("个性化辅导服务记录") {
@@ -65,23 +65,23 @@ diagram_8x_flow {
                     }
 
                     normalTeachFulfillment = fulfillment("支付课程报酬", ONE_TO_N) {
-                        request(platform) {
+                        request(teacher) {
                             key_timestamps("创建时间", "过期时间")
                             key_data("收款账号")
                         }
 
-                        confirmation(teacher) {
+                        confirmation(platform) {
                             key_timestamps("创建时间")
                         }
                     }
 
                     customerizeTeachFulfillment = fulfillment("支付个性化辅导费用", ONE_TO_N) {
-                        request(platform) {
+                        request(teacher) {
                             key_timestamps("创建时间", "过期时间")
                             key_data("收款账号")
                         }
 
-                        confirmation(teacher) {
+                        confirmation(platform) {
                             key_timestamps("创建时间")
                         }
                     }
@@ -152,4 +152,4 @@ diagram_8x_flow {
         }
     }
 
-} export "./diagrams/training/讲师服务上下文.png"
+} export "../diagrams/training/讲师服务上下文.png"
